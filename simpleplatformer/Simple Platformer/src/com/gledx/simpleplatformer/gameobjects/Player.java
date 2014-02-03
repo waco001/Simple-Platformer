@@ -17,7 +17,7 @@ public class Player extends GameObject{
 
 	public Player(int i, int j) {
 		// TODO Auto-generated constructor stub
-		init(i, j, 0.1f, 1f, 0.25f, 8, 8);
+		init(i, j, 1.0f, 0.1f, 0.25f, 8, 8);
 	}
 
 	@Override
@@ -25,25 +25,25 @@ public class Player extends GameObject{
 		if(moveLeft == true){
 			if(canMoveLeft()){
 				loc.x -= blockSpeed;
-				Camera.translate_x += blockSpeed;
+				//Camera.translate_x += blockSpeed;
 			}
 		}
 		if(moveDown == true){
 			if(canMoveDown()){
 				loc.y += blockSpeed;
-				Camera.translate_y -= blockSpeed;
+				//Camera.translate_y -= blockSpeed;
 			}
 		}
 		if(moveRight == true){
 			if(canMoveRight()){
 				loc.x += blockSpeed;
-				Camera.translate_x -= blockSpeed;
+				//Camera.translate_x -= blockSpeed;
 			}
 		}
 		if(moveUp == true){
 			if(canMoveUp()){
 				loc.y -= blockSpeed;
-				Camera.translate_y += blockSpeed;
+				//Camera.translate_y += blockSpeed;
 			}
 		}
 	}
