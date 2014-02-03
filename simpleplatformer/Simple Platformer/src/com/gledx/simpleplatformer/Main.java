@@ -93,7 +93,7 @@ public class Main {
 	private static void initDisplay(){
 		try {
 			//Display.setDisplayMode(new DisplayMode(Map.roundToMultiple(windowWidth, Map.tileSize),Map.roundToMultiple(windowHeight, Map.tileSize)));
-			Display.setTitle("GAMETITLE");
+			Display.setTitle("The Great Cube");
 			Display.setDisplayMode(new DisplayMode(windowWidth, windowHeight));
 			Display.setResizable(true);
 			Display.create();

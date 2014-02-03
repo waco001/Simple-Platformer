@@ -83,7 +83,10 @@ public class Player extends GameObject{
 			        h=Math.min(h,0);}
 			}
 			
-		
+		if (loc.x+1>800)
+		{loc.x=1;}
+		if (loc.x-1<0)
+		{loc.x=799;}
 	}
 
 
@@ -122,7 +125,6 @@ public class Player extends GameObject{
 			}
 		}
 	}
-	
 	private boolean canMoveLeft(){
 		if(loc.x - 8 < 0)
 			return false;
@@ -143,4 +145,5 @@ public class Player extends GameObject{
 			return false;
 		return true;
 	}
+
 }
