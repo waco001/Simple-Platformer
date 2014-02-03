@@ -26,7 +26,7 @@ public class Game {
 	public void render(){
 		for(GameObject go : objects)
 			go.render();
-		Camera.translate();
+		//Camera.translate();
 
 
 	}
