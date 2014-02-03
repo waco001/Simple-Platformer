@@ -15,6 +15,10 @@ public class Player extends GameObject{
     private double maxhspeed=5;
     private double _maxvspeed=5.5;
     private double _maxhspeed=5;
+    private double maxjumpspeed=-12;
+    private double jumpspeed=-4.8;
+    private double walljumpspeed=-3;
+    private double vspeed=0;
     private double _acc=0.23;
     private double _deacc=0.34;
     private double h=0;
@@ -57,7 +61,8 @@ public class Player extends GameObject{
 				////Camera.translate_y += blockSpeed;
 			//}
 		//}
-
+		h=Math.min(_maxhspeed,Math.max(h,-_maxhspeed));
+		vspeed=Math.min(_maxvspeed,Math.max(vspeed,maxjumpspeed));
 		loc.x+=h;
 		
 			if ((Left==true) && (Right==false) )//|| (Right=true) && (Left=false))
