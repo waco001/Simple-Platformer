@@ -9,11 +9,22 @@ import com.gledx.simpleplatformer.engine.GameObject;
 
 public class Player extends GameObject{
 
-	private int blockSpeed = 16;
-	private boolean moveLeft = false;
-	private boolean moveRight = false;
-	private boolean moveUp = false;
-	private boolean moveDown = false;
+	private double acc=0.23;
+	private double deacc=0.18;
+    private double maxvspeed=6.5;
+    private double maxhspeed=5;
+    private double _maxvspeed=5.5;
+    private double _maxhspeed=5;
+    private double _acc=0.23;
+    private double _deacc=0.34;
+    private double h=0;
+    private int dir=0;
+    //private int jumps=2;
+    
+	private boolean Left = false;
+	private boolean Right = false;
+	private boolean Up = false;
+	private boolean Down = false;
 
 	public Player(int i, int j) {
 		// TODO Auto-generated constructor stub
@@ -22,30 +33,57 @@ public class Player extends GameObject{
 
 	@Override
 	public void update(){
-		if(moveLeft == true){
-			if(canMoveLeft()){
-				loc.x -= blockSpeed;
-				//Camera.translate_x += blockSpeed;
+		//if(moveLeft == true){
+		//	if(canMoveLeft()){
+				//loc.x -= acc;
+				////Camera.translate_x += blockSpeed;
+		//	}
+		//}
+		//if(moveDown == true){
+		//	if(canMoveDown()){
+		//		loc.y += acc;
+				////Camera.translate_y -= blockSpeed;
+		//	}
+		//}
+	//	if(moveRight == true){
+		//	if(canMoveRight()){
+			//	loc.x += acc;
+				////Camera.translate_x -= blockSpeed;
+			//}
+		//}
+		//if(moveUp == true){
+		//	if(canMoveUp()){
+			//	loc.y -= acc;
+				////Camera.translate_y += blockSpeed;
+			//}
+		//}
+
+		loc.x+=h;
+		
+			if ((Left==true) && (Right==false) )//|| (Right=true) && (Left=false))
+			{
+				h-=_acc;
+				loc.x+=h;
 			}
-		}
-		if(moveDown == true){
-			if(canMoveDown()){
-				loc.y += blockSpeed;
-				//Camera.translate_y -= blockSpeed;
+			
+			if((Right==true) && (Left==false))	
+			{
+				h+=_acc;
+				loc.x+=h;	
+				
 			}
-		}
-		if(moveRight == true){
-			if(canMoveRight()){
-				loc.x += blockSpeed;
-				//Camera.translate_x -= blockSpeed;
+			if((Left==true)&& (Right==true) || ((Left==false) && (Right==false)))
+			{
+				
+				if (h>0){
+			        h-=_deacc;
+			        h=Math.max(h,0);}
+			    if (h<0){
+			        h+=_deacc;
+			        h=Math.min(h,0);}
 			}
-		}
-		if(moveUp == true){
-			if(canMoveUp()){
-				loc.y -= blockSpeed;
-				//Camera.translate_y += blockSpeed;
-			}
-		}
+			
+		
 	}
 
 
@@ -53,31 +91,38 @@ public class Player extends GameObject{
 		// TODO Auto-generated method stub
 		while (Keyboard.next()) {
 			if(Keyboard.isKeyDown(Keyboard.KEY_A)){
-				moveLeft = true;
+				//moveLeft = true;
+				Left=true;
 			}
 			else{
-				moveLeft = false;
+				//moveLeft = false;
+				Left=false;
 			}
 			if(Keyboard.isKeyDown(Keyboard.KEY_S)){
-				moveDown = true;
+				//moveDown = true;
 			}
 			else{
-				moveDown = false;
+				//moveDown = false;
 			}
 			if(Keyboard.isKeyDown(Keyboard.KEY_D)){
-				moveRight = true;
+				//moveRight = true;
+				Right=true;
 			}
 			else{
-				moveRight = false;
+				//moveRight = false;
+				Right=false;
 			}
+			
+
 			if(Keyboard.isKeyDown(Keyboard.KEY_W)){
-				moveUp = true;
+				//moveUp = true;
 			}
 			else{
-				moveUp = false;
+				//moveUp = false;
 			}
 		}
 	}
+	
 	private boolean canMoveLeft(){
 		if(loc.x - 8 < 0)
 			return false;
