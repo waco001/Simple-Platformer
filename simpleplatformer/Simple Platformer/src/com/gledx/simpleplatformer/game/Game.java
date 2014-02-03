@@ -3,6 +3,7 @@ package com.gledx.simpleplatformer.game;
 import java.util.ArrayList;
 
 import com.gledx.simpleplatformer.Main;
+import com.gledx.simpleplatformer.engine.Camera;
 import com.gledx.simpleplatformer.engine.GameObject;
 import com.gledx.simpleplatformer.gameobjects.Player;
 import com.gledx.simpleplatformer.gameobjects.Wall;
@@ -35,7 +36,7 @@ public class Game {
 	public void render(){
 		for(GameObject go : objects)
 			go.render();
-		//Camera.translate();
+		Camera.translate();
 
 
 	}
