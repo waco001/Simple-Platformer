@@ -17,9 +17,9 @@ public class Game {
 	public Game(){
 		objects = new ArrayList<GameObject>();
 		player = new Player(Main.windowWidth/2, Main.windowHeight/2); //TEMP!
-		wall= new Wall(400,408);
-		wall2= new Wall(392,408);
-		wall3= new Wall(408,408);
+		wall= new Wall(400,416);
+		wall2= new Wall(386,416);
+		wall3= new Wall(416,416);
 		objects.add(player);
 		objects.add(wall);
 		objects.add(wall2);

@@ -32,7 +32,7 @@ public class Player extends GameObject{
 
 	public Player(int i, int j) {
 		// TODO Auto-generated constructor stub
-		init(i, j, 1.0f, 0.1f, 0.25f, 8, 8);
+		init(i, j, 1.0f, 0.1f, 0.25f, 16, 16);
 	}
 
 	@Override
