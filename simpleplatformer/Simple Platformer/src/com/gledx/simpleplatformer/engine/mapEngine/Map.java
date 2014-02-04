@@ -9,7 +9,10 @@ public class Map implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	public ArrayList<Tile> mapData;
-	public Map(ArrayList<Tile> mapData){
+	public Map(){
+		
+	}
+	public void setData(ArrayList<Tile> mapData){
 		this.mapData = mapData;
 		
 	}

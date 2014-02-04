@@ -27,7 +27,6 @@ public class Game {
 	public Game(){
 		objects = new ArrayList<GameObject>();
 		player = new Player(Main.windowWidth/2, Main.windowHeight/2); //TEMP!
-		mapData = new ArrayList<Tile>();
 		mapManager = new MapManager();
 		wall= new Wall(400,416);
 		wall2= new Wall(386,416);
@@ -36,14 +35,15 @@ public class Game {
 		objects.add(wall);
 		objects.add(wall2);
 		objects.add(wall3);
-		map1 = new Map(mapData);
-		map1.mapData.add(new Tile(new Point(50, 50), 32, 32, Tile.tiletype.BLOCK_WALL));
-		map1.mapData.add(new Tile(new Point(82, 50), 32, 32, Tile.tiletype.BLOCK_GROUND));
-		map1.mapData.add(new Tile(new Point(50, 82), 32, 32, Tile.tiletype.BLOCK_WALL));
-		map1.mapData.add(new Tile(new Point(50, 104), 32, 32, Tile.tiletype.BLOCK_LAVA));
-		mapManager.saveMap(map1, "testMap1.zme");// <--------- SERIALIZING CODE
+		mapData = new ArrayList<Tile>();
+		map1 = new Map();
 		
-
+		//mapData.add(new Tile(new Point(50, 50), 32, 32, Tile.tiletype.BLOCK_WALL));
+		//mapData.add(new Tile(new Point(82, 50), 32, 32, Tile.tiletype.BLOCK_GROUND));
+		//mapData.add(new Tile(new Point(50, 82), 32, 32, Tile.tiletype.BLOCK_WALL));
+		//mapData.add(new Tile(new Point(50, 104), 32, 32, Tile.tiletype.BLOCK_LAVA));
+		//map1.setData(mapData);
+		//mapManager.saveMap(map1, "testMap1.zme");// <--------- SERIALIZING CODE
 
 	}
 	public void getInput(){
@@ -57,9 +57,9 @@ public class Game {
 	public void render(){
 		for(GameObject go : objects)
 			go.render();
-
 		//Camera.translate();
-
+		map1 = mapManager.loadMap("testMap1.zme");
+		map1.render();
 
 	}
 }

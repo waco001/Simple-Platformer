@@ -6,9 +6,15 @@ import static org.lwjgl.opengl.GL11.glColor3f;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
+import java.io.Serializable;
+
 import com.gledx.simpleplatformer.engine.Point;
 
-public class Tile {
+public class Tile implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Point point;
 	public int width;
 	public int height;

@@ -1,6 +1,12 @@
 package com.gledx.simpleplatformer.engine;
 
-public class Point {
+import java.io.Serializable;
+
+public class Point implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
 	public int getX() {
