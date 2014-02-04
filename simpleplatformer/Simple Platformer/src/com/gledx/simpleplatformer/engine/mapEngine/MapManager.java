@@ -42,7 +42,6 @@ public class MapManager {
 			out.writeObject(mapData);
 			out.close();
 			fileOut.close();
-			System.out.printf("Serialized data is saved in /tmp/employee.ser");
 		}catch(IOException i)
 		{
 			i.printStackTrace();

@@ -71,7 +71,6 @@ public class Player extends GameObject{
 		h=Math.min(_maxhspeed,Math.max(h,-_maxhspeed));
 		vspeed=Math.min(_maxvspeed,Math.max(vspeed,maxjumpspeed));
 		loc.x+=h;
-
 		if ((Left==true) && (Right==false) )//|| (Right=true) && (Left=false))
 		{
 			h-=_acc;
