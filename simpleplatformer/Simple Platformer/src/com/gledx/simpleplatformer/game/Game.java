@@ -54,6 +54,7 @@ public class Game {
 		for(GameObject go : objects)
 			go.update();
 	}
+	
 	public void render(){
 		for(GameObject go : objects)
 			go.render();
