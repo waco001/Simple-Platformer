@@ -26,6 +26,8 @@ public class Main {
 	private static int targetFPS = 15;
 	public static int windowWidth = 800;
 	public static int windowHeight = 800;
+	enum gamestate { GAME_LOADING, GAME_PLAY, GAME_EXIT };
+	gamestate gameState;
 	public static void main(String[] args){
 		System.setProperty("org.lwjgl.librarypath",System.getProperty("user.dir") + "/lib/");
 		initDisplay();
