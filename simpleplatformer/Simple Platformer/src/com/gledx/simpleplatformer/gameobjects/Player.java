@@ -139,7 +139,7 @@ public class Player extends GameObject{
 	private boolean move(){
 		for(Tile t : MapManager.currentMap.mapData){
 			if (t.hitBox.intersects(hitBox)){
-				return true;
+				return false;
 			}
 		}
 		return true;
