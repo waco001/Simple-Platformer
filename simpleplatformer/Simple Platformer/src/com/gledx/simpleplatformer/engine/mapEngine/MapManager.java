@@ -7,7 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class MapManager {
-	private Map currentMap;
+	public static Map currentMap;
 	public void render(){
 		currentMap.render();
 	}

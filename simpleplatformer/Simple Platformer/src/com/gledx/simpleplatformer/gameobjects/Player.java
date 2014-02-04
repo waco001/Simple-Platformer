@@ -6,25 +6,27 @@ import org.lwjgl.input.Keyboard;
 
 import com.gledx.simpleplatformer.engine.Camera;
 import com.gledx.simpleplatformer.engine.GameObject;
+import com.gledx.simpleplatformer.engine.mapEngine.MapManager;
+import com.gledx.simpleplatformer.engine.mapEngine.Tile;
 
 public class Player extends GameObject{
 
 	private double acc=0.23;
 	private double deacc=0.18;
-    private double maxvspeed=6.5;
-    private double maxhspeed=5;
-    private double _maxvspeed=5.5;
-    private double _maxhspeed=5;
-    private double maxjumpspeed=-12;
-    private double jumpspeed=-4.8;
-    private double walljumpspeed=-3;
-    private double vspeed=0;
-    private double _acc=0.23;
-    private double _deacc=0.34;
-    private double h=0;
-    private int dir=0;
-    //private int jumps=2;
-    
+	private double maxvspeed=6.5;
+	private double maxhspeed=5;
+	private double _maxvspeed=5.5;
+	private double _maxhspeed=5;
+	private double maxjumpspeed=-12;
+	private double jumpspeed=-4.8;
+	private double walljumpspeed=-3;
+	private double vspeed=0;
+	private double _acc=0.23;
+	private double _deacc=0.34;
+	private double h=0;
+	private int dir=0;
+	//private int jumps=2;
+
 	private boolean Left = false;
 	private boolean Right = false;
 	private boolean Up = false;
@@ -41,58 +43,58 @@ public class Player extends GameObject{
 		hitBox.y = loc.y;
 		hitBox.width = (int) spr.getSx();
 		hitBox.width= (int) spr.getSy();
-		
+
 		//if(moveLeft == true){
 		//	if(canMoveLeft()){
-				//loc.x -= acc;
-				////Camera.translate_x += blockSpeed;
+		//loc.x -= acc;
+		////Camera.translate_x += blockSpeed;
 		//	}
 		//}
 		//if(moveDown == true){
 		//	if(canMoveDown()){
 		//		loc.y += acc;
-				////Camera.translate_y -= blockSpeed;
+		////Camera.translate_y -= blockSpeed;
 		//	}
 		//}
-	//	if(moveRight == true){
+		//	if(moveRight == true){
 		//	if(canMoveRight()){
-			//	loc.x += acc;
-				////Camera.translate_x -= blockSpeed;
-			//}
+		//	loc.x += acc;
+		////Camera.translate_x -= blockSpeed;
+		//}
 		//}
 		//if(moveUp == true){
 		//	if(canMoveUp()){
-			//	loc.y -= acc;
-				////Camera.translate_y += blockSpeed;
-			//}
+		//	loc.y -= acc;
+		////Camera.translate_y += blockSpeed;
+		//}
 		//}
 		h=Math.min(_maxhspeed,Math.max(h,-_maxhspeed));
 		vspeed=Math.min(_maxvspeed,Math.max(vspeed,maxjumpspeed));
 		loc.x+=h;
-		
-			if ((Left==true) && (Right==false) )//|| (Right=true) && (Left=false))
-			{
-				h-=_acc;
-				loc.x+=h;
-			}
-			
-			if((Right==true) && (Left==false))	
-			{
-				h+=_acc;
-				loc.x+=h;	
-				
-			}
-			if((Left==true)&& (Right==true) || ((Left==false) && (Right==false)))
-			{
-				
-				if (h>0){
-			        h-=_deacc;
-			        h=Math.max(h,0);}
-			    if (h<0){
-			        h+=_deacc;
-			        h=Math.min(h,0);}
-			}
-			
+
+		if ((Left==true) && (Right==false) )//|| (Right=true) && (Left=false))
+		{
+			h-=_acc;
+			loc.x+=h;
+		}
+
+		if((Right==true) && (Left==false))	
+		{
+			h+=_acc;
+			loc.x+=h;	
+
+		}
+		if((Left==true)&& (Right==true) || ((Left==false) && (Right==false)))
+		{
+
+			if (h>0){
+				h-=_deacc;
+				h=Math.max(h,0);}
+			if (h<0){
+				h+=_deacc;
+				h=Math.min(h,0);}
+		}
+
 		if (loc.x+1>800)
 		{loc.x=1;}
 		if (loc.x-1<0)
@@ -125,7 +127,7 @@ public class Player extends GameObject{
 				//moveRight = false;
 				Right=false;
 			}
-			
+
 
 			if(Keyboard.isKeyDown(Keyboard.KEY_W)){
 				//moveUp = true;
@@ -136,6 +138,11 @@ public class Player extends GameObject{
 		}
 	}
 	private boolean move(){
+		for(Tile t : MapManager.currentMap.mapData){
+			if (t.hitBox.intersects(hitBox)){
+				return true;
+			}
+		}
 		return true;
 	}
 

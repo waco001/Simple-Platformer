@@ -6,6 +6,7 @@ import static org.lwjgl.opengl.GL11.glColor3f;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
+import java.awt.Rectangle;
 import java.io.Serializable;
 
 import com.gledx.simpleplatformer.engine.Point;
@@ -18,13 +19,19 @@ public class Tile implements Serializable{
 	public Point point;
 	public int width;
 	public int height;
+	public Rectangle hitBox;
 	public static enum tiletype { BLOCK_AIR, BLOCK_WALL, BLOCK_GROUND, BLOCK_LAVA }
 	public tiletype tileType;
 	public Tile(Point point1, int width, int height, tiletype type){
+		hitBox = new Rectangle();
 		tileType = type;
 		this.width = width;
 		this.height = height;
 		this.point = point1;
+		hitBox.x = point1.getX();
+		hitBox.y = point1.getY();
+		hitBox.width = (int) width;
+		hitBox.width= (int) height;
 	}
 	public void render(){
 		//DRY WAY
