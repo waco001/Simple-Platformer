@@ -26,7 +26,7 @@ public class Player extends GameObject{
 	private double h=0;
 	private int dir=0;
 	//private int jumps=2;
-
+    private boolean move=true;
 	private boolean Left = false;
 	private boolean Right = false;
 	private boolean Up = false;
@@ -42,8 +42,15 @@ public class Player extends GameObject{
 		hitBox.x = loc.x;
 		hitBox.y = loc.y;
 		hitBox.width = (int) spr.getSx();
-		hitBox.width= (int) spr.getSy();
-
+		hitBox.height= (int)  spr.getSy();
+		for(Tile t : MapManager.currentMap.mapData){
+			if (hitBox.intersects(t.hitBox)){
+				move= false;
+			}
+			if (!hitBox.intersects(t.hitBox)){
+				move= true;
+			}
+}
 		//if(moveLeft == true){
 		//	if(canMoveLeft()){
 		//loc.x -= acc;
@@ -68,6 +75,7 @@ public class Player extends GameObject{
 		////Camera.translate_y += blockSpeed;
 		//}
 		//}
+		if (move==true){
 		h=Math.min(_maxhspeed,Math.max(h,-_maxhspeed));
 		vspeed=Math.min(_maxvspeed,Math.max(vspeed,maxjumpspeed));
 		loc.x+=h;
@@ -97,7 +105,7 @@ public class Player extends GameObject{
 		if (loc.x+1>800)
 		{loc.x=1;}
 		if (loc.x-1<0)
-		{loc.x=799;}
+		{loc.x=799;}}
 	}
 
 
@@ -136,13 +144,13 @@ public class Player extends GameObject{
 			}
 		}
 	}
-	private boolean move(){
-		for(Tile t : MapManager.currentMap.mapData){
-			if (t.hitBox.intersects(hitBox)){
-				return false;
-			}
-		}
-		return true;
-	}
+//	private boolean move(){
+	//	for(Tile t : MapManager.currentMap.mapData){
+		//	if (t.hitBox.intersects(hitBox)){
+			//	return false;
+			//}
+		//}
+		//return true;
+	//}
 
 }
