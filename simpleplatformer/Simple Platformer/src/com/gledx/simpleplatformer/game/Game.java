@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.gledx.simpleplatformer.Main;
 import com.gledx.simpleplatformer.engine.GameObject;
-import com.gledx.simpleplatformer.engine.Point;
 import com.gledx.simpleplatformer.engine.mapEngine.Map;
 import com.gledx.simpleplatformer.engine.mapEngine.MapManager;
 import com.gledx.simpleplatformer.engine.mapEngine.Tile;
@@ -35,9 +34,8 @@ public class Game {
 		objects.add(wall);
 		objects.add(wall2);
 		objects.add(wall3);
-		mapData = new ArrayList<Tile>();
-		map1 = new Map();
-		
+		mapManager.loadMap("testMap1.zme");
+		//mapData = new ArrayList<Tile>();
 		//mapData.add(new Tile(new Point(50, 50), 32, 32, Tile.tiletype.BLOCK_WALL));
 		//mapData.add(new Tile(new Point(82, 50), 32, 32, Tile.tiletype.BLOCK_GROUND));
 		//mapData.add(new Tile(new Point(50, 82), 32, 32, Tile.tiletype.BLOCK_WALL));
@@ -59,8 +57,6 @@ public class Game {
 		for(GameObject go : objects)
 			go.render();
 		//Camera.translate();
-		map1 = mapManager.loadMap("testMap1.zme");
-		map1.render();
-
+		mapManager.render();
 	}
 }

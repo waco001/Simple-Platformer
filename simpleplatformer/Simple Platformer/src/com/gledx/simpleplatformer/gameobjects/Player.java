@@ -37,6 +37,11 @@ public class Player extends GameObject{
 
 	@Override
 	public void update(){
+		hitBox.x = loc.x;
+		hitBox.y = loc.y;
+		hitBox.width = (int) spr.getSx();
+		hitBox.width= (int) spr.getSy();
+		
 		//if(moveLeft == true){
 		//	if(canMoveLeft()){
 				//loc.x -= acc;
@@ -130,24 +135,7 @@ public class Player extends GameObject{
 			}
 		}
 	}
-	private boolean canMoveLeft(){
-		if(loc.x - 8 < 0)
-			return false;
-		return true;
-	}
-	private boolean canMoveRight(){
-		if(loc.x + 8> 800)
-			return false;
-		return true;
-	}
-	private boolean canMoveUp(){
-		if(loc.y - 8< 0)
-			return false;
-		return true;
-	}
-	private boolean canMoveDown(){
-		if(loc.y + 8> 800)
-			return false;
+	private boolean move(){
 		return true;
 	}
 

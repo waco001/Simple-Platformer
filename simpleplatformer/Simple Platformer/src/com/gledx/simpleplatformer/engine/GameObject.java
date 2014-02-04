@@ -13,15 +13,17 @@ public abstract class GameObject {
 	protected int velocityX;
 	protected int velocityY;
 	protected Sprite spr;
-	protected Rectangle hitBox;
+	public Rectangle hitBox;
 
 	public void init(int x, int y, float r, float g, float b, int sx, int sy){
 		loc = new Point(x, y);
 		spr = new Sprite(r, g, b, sx, sy);
+		hitBox = new Rectangle();
 	}
 	public void init(int x, int y, Color c, int sx, int sy){
 		loc = new Point(x, y);
 		spr = new Sprite(c, sx, sy);
+		hitBox = new Rectangle();
 	}
 	public float getX() {
 		return this.loc.x;

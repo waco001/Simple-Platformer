@@ -11,7 +11,7 @@ public class MapManager {
 	public void render(){
 		currentMap.render();
 	}
-	public Map loadMap(String filename){
+	public void loadMap(String filename){
 		Map returnMap = null;
 		try
 		{
@@ -28,7 +28,7 @@ public class MapManager {
 			System.out.println("Employee class not found");
 			c.printStackTrace();
 		}
-		return returnMap;
+		currentMap = returnMap;
 
 	}
 
