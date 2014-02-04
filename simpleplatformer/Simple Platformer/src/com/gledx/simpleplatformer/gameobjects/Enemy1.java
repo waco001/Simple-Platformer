@@ -64,7 +64,6 @@ public class Enemy1 extends GameObject{
 			spr.render();
 		}
 		glPopMatrix();
-		System.out.print(loc.x + " ");
-		System.out.println(loc.y);
+
 	}
 }
