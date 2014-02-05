@@ -5,6 +5,8 @@ import org.lwjgl.input.Keyboard;
 import com.gledx.simpleplatformer.Main;
 import com.gledx.simpleplatformer.engine.Camera;
 import com.gledx.simpleplatformer.engine.GameObject;
+import com.gledx.simpleplatformer.engine.Point;
+import com.gledx.simpleplatformer.tileEngine.Map;
 
 public class Player extends GameObject{
 	private int speed = 16;
@@ -21,28 +23,28 @@ public class Player extends GameObject{
 
 	@Override
 	public void update(){
+		if(canMove()){
+			if(!(Right && Left)){
+				if(Right){
+					loc.x += speed;
+				}
+				if(Left){
+					loc.x -= speed;
+				}
 
-		if(!(Right && Left)){
-			if(Right){
-				loc.x += speed;
 			}
-			if(Left){
-				loc.x -= speed;
+			if(!(Down && Up)){
+				if(Down){
+					loc.y += speed;
+				}
+				if(Up){
+					loc.y -= speed;
+				}
 			}
-
 		}
-		if(!(Down && Up)){
-			if(Down){
-				loc.y += speed;
-			}
-			if(Up){
-				loc.y -= speed;
-			}
-		}
-
 		Camera.translate_x = -1 * (loc.x) + Main.windowWidth/2;
 		Camera.translate_y = -1 * (loc.y) + Main.windowWidth/2;
-	
+
 		System.out.println(loc.x + " " + loc.y);
 		//Camera.translate_y = -1 * (loc.y);
 	}
@@ -81,6 +83,22 @@ public class Player extends GameObject{
 			}
 
 		}
+	}
+
+	public boolean canMove(){
+		if(Map.isBlockAt(new Point(loc.x - 16, loc.y))){
+			return false;
+		}
+		if(Map.isBlockAt(new Point(loc.x , loc.y - 16))){
+			return false;
+		}
+		if(Map.isBlockAt(new Point(loc.x + 16, loc.y))){
+			return false;
+		}
+		if(Map.isBlockAt(new Point(loc.x , loc.y + 16))){
+			return false;
+		}
+		return true;
 	}
 
 
