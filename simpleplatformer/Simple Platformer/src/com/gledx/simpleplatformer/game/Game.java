@@ -2,19 +2,14 @@ package com.gledx.simpleplatformer.game;
 
 import java.util.ArrayList;
 
-import com.gledx.simpleplatformer.Main;
+import com.gledx.simpleplatformer.engine.Camera;
 import com.gledx.simpleplatformer.engine.GameObject;
-import com.gledx.simpleplatformer.engine.Point;
-import com.gledx.simpleplatformer.engine.mapEngine.Map;
-import com.gledx.simpleplatformer.engine.mapEngine.MapManager;
-import com.gledx.simpleplatformer.engine.mapEngine.Tile;
 import com.gledx.simpleplatformer.gameobjects.Player;
 import com.gledx.simpleplatformer.gameobjects.Wall;
+import com.gledx.simpleplatformer.tileEngine.Map;
 
 public class Game {
 	public static ArrayList<GameObject> objects;
-	ArrayList<Tile> mapData;
-	MapManager mapManager;
 	public static Player player;
 	public static Wall wall;
 	public static Wall wall2;
@@ -22,28 +17,18 @@ public class Game {
 
 
 
-
-	Map map1;
 	public Game(){
 		objects = new ArrayList<GameObject>();
-		player = new Player(100, 50); //TEMP!
-		mapManager = new MapManager();
+		player = new Player(0, 0); //TEMP!
+		Camera.translate_x = 100;
+		Camera.translate_y = 50;
 		wall= new Wall(400,416);
 		wall2= new Wall(386,416);
 		wall3= new Wall(416,416);
-		Map map1 = new Map();
 		objects.add(player);
 		objects.add(wall);
 		objects.add(wall2);
 		objects.add(wall3);
-		mapManager.loadMap("testMap1.zme");
-		/*mapData = new ArrayList<Tile>();
-		mapData.add(new Tile(new Point(50, 50), 32, 32, Tile.tiletype.BLOCK_WALL));
-		mapData.add(new Tile(new Point(82, 50), 32, 32, Tile.tiletype.BLOCK_GROUND));
-		mapData.add(new Tile(new Point(50, 82), 32, 32, Tile.tiletype.BLOCK_WALL));
-		mapData.add(new Tile(new Point(50, 104), 32, 32, Tile.tiletype.BLOCK_LAVA));
-		map1.setData(mapData);
-		mapManager.saveMap(map1, "testMap1.zme");// <--------- SERIALIZING CODE*/
 
 	}
 	public void getInput(){
@@ -56,9 +41,10 @@ public class Game {
 	}
 	
 	public void render(){
+		Map.render();
 		for(GameObject go : objects)
 			go.render();
 		//Camera.translate();
-		mapManager.render();
+		Camera.translate();
 	}
 }

@@ -1,33 +1,14 @@
 package com.gledx.simpleplatformer.gameobjects;
 
-import java.util.Map;
-
 import org.lwjgl.input.Keyboard;
-import java.awt.Rectangle;
 
+import com.gledx.simpleplatformer.Main;
 import com.gledx.simpleplatformer.engine.Camera;
 import com.gledx.simpleplatformer.engine.GameObject;
-import com.gledx.simpleplatformer.engine.mapEngine.MapManager;
-import com.gledx.simpleplatformer.engine.mapEngine.Tile;
 
 public class Player extends GameObject{
+	private int speed = 16;
 
-	private double acc=0.23;
-	private double deacc=0.18;
-	private double maxvspeed=6.5;
-	private double maxhspeed=5;
-	private double _maxvspeed=5.5;
-	private double _maxhspeed=5;
-	private double maxjumpspeed=-12;
-	private double jumpspeed=-4.8;
-	private double walljumpspeed=-3;
-	private double vspeed=0;
-	private double _acc=0.23;
-	private double _deacc=0.34;
-	private double h=0;
-	private int dir=0;
-	//private int jumps=2;
-    private boolean move=true;
 	private boolean Left = false;
 	private boolean Right = false;
 	private boolean Up = false;
@@ -35,99 +16,41 @@ public class Player extends GameObject{
 
 	public Player(int i, int j) {
 		// TODO Auto-generated constructor stub
-		init(i, j, 1.0f, 0.1f, 0.25f, 16, 16);
-		hitBox= new Rectangle();
-		hitBox.width = (int) spr.getSx();
-		hitBox.height= (int)  spr.getSy();
-		hitBox.x=loc.x;
-		hitBox.y=loc.y;
-		Keyboard.enableRepeatEvents(true);
+		init(i, j, 1.0f, 0.1f, 0.25f);
 	}
 
 	@Override
 	public void update(){
-		hitBox= new Rectangle();
-		hitBox.width = (int) spr.getSx();
-		hitBox.height= (int)  spr.getSy();
-		hitBox.x=loc.x;
-		hitBox.y=loc.y;
-		for(Tile t : MapManager.currentMap.mapData){
-			if (hitBox.intersects(t.hitBox)){
-				move= false;
 
+		if(!(Right && Left)){
+			if(Right){
+				loc.x += speed;
 			}
-			if (!hitBox.intersects(t.hitBox)){
-				move= true;
+			if(Left){
+				loc.x -= speed;
 			}
-}
-		//if(moveLeft == true){
-		//	if(canMoveLeft()){
-		//loc.x -= acc;
-		////Camera.translate_x += blockSpeed;
-		//	}
-		//}
-		//if(moveDown == true){
-		//	if(canMoveDown()){
-		//		loc.y += acc;
-		////Camera.translate_y -= blockSpeed;
-		//	}
-		//}
-		//	if(moveRight == true){
-		//	if(canMoveRight()){
-		//	loc.x += acc;
-		////Camera.translate_x -= blockSpeed;
-		//}
-		//}
-		//if(moveUp == true){
-		//	if(canMoveUp()){
-		//	loc.y -= acc;
-		////Camera.translate_y += blockSpeed;
-		//}
-		//}
-		if (move==true){
-		h=Math.min(_maxhspeed,Math.max(h,-_maxhspeed));
-		vspeed=Math.min(_maxvspeed,Math.max(vspeed,maxjumpspeed));
-		loc.x+=h;
-		if ((Left==true) && (Right==false) )//|| (Right=true) && (Left=false))
-		{
-			h-=_acc;
-			loc.x+=h;
-		}
-
-		if((Right==true) && (Left==false))	
-		{
-			h+=_acc;
-			loc.x+=h;	
 
 		}
-		if((Left==true)&& (Right==true) || ((Left==false) && (Right==false)))
-		{
-
-			if (h>0){
-				h-=_deacc;
-				h=Math.max(h,0);}
-			if (h<0){
-				h+=_deacc;
-				h=Math.min(h,0);}
+		if(!(Down && Up)){
+			if(Down){
+				loc.y += speed;
+			}
+			if(Up){
+				loc.y -= speed;
+			}
 		}
 
-		if (loc.x+1>800)
-		{loc.x=1;}
-		if (loc.x-1<0)
-		{loc.x=799;}}
+		Camera.translate_x = -1 * (loc.x) + Main.windowWidth/2;
+		Camera.translate_y = -1 * (loc.y) + Main.windowWidth/2;
+	
+		System.out.println(loc.x + " " + loc.y);
+		//Camera.translate_y = -1 * (loc.y);
 	}
 
 
 	public void getInput() {
 		// TODO Auto-generated method stub
 		while (Keyboard.next()) {
-
-			if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
-				//moveLeft = true;
-				System.exit(0);
-			}
-			
-			
 			if(Keyboard.isKeyDown(Keyboard.KEY_A)){
 				//moveLeft = true;
 				Left=true;
@@ -137,10 +60,10 @@ public class Player extends GameObject{
 				Left=false;
 			}
 			if(Keyboard.isKeyDown(Keyboard.KEY_S)){
-				//moveDown = true;
+				Down = true;
 			}
 			else{
-				//moveDown = false;
+				Down = false;
 			}
 			if(Keyboard.isKeyDown(Keyboard.KEY_D)){
 				//moveRight = true;
@@ -150,23 +73,15 @@ public class Player extends GameObject{
 				//moveRight = false;
 				Right=false;
 			}
-
-
 			if(Keyboard.isKeyDown(Keyboard.KEY_W)){
-				//moveUp = true;
+				Up = true;
 			}
 			else{
-				//moveUp = false;
+				Up = false;
 			}
+
 		}
 	}
-//	private boolean move(){
-	//	for(Tile t : MapManager.currentMap.mapData){
-		//	if (t.hitBox.intersects(hitBox)){
-			//	return false;
-			//}
-		//}
-		//return true;
-	//}
+
 
 }

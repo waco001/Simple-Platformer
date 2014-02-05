@@ -13,6 +13,8 @@ import static org.lwjgl.opengl.GL11.glOrtho;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
 
+import java.io.IOException;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
@@ -20,6 +22,7 @@ import org.lwjgl.opengl.DisplayMode;
 
 import com.gledx.simpleplatformer.engine.Camera;
 import com.gledx.simpleplatformer.game.Game;
+import com.gledx.simpleplatformer.tileEngine.Map;
 
 public class Main {
 	private static Game game;
@@ -41,6 +44,12 @@ public class Main {
 		// TODO Auto-generated method stub
 		game = new Game();
 		Keyboard.enableRepeatEvents(true); //Hold down keys
+		try {
+			Map.loadMap();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 	private static void cleanup() {

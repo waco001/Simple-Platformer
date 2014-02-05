@@ -3,10 +3,10 @@ package com.gledx.simpleplatformer.gameobjects;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
 import static org.lwjgl.opengl.GL11.glTranslatef;
-import java.util.Random;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.Random;
 
 import com.gledx.simpleplatformer.engine.GameObject;
 import com.gledx.simpleplatformer.engine.Sprite;
@@ -18,7 +18,7 @@ public class Enemy1 extends GameObject{
 	private int newx;
 	private int newy;
 	public Enemy1(int i, int j) {
-		init(i, j, 0.0f, 0.8f, 1.45f, 16, 16);
+		init(i, j, 0.0f, 0.8f, 1.45f);
 	}
 	
 	public void init(int x, int y, Color c, int sx, int sy){
