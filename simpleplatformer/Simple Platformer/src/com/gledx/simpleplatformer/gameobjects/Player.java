@@ -3,6 +3,7 @@ package com.gledx.simpleplatformer.gameobjects;
 import java.util.Map;
 
 import org.lwjgl.input.Keyboard;
+import java.awt.Rectangle;
 
 import com.gledx.simpleplatformer.engine.Camera;
 import com.gledx.simpleplatformer.engine.GameObject;
@@ -35,17 +36,25 @@ public class Player extends GameObject{
 	public Player(int i, int j) {
 		// TODO Auto-generated constructor stub
 		init(i, j, 1.0f, 0.1f, 0.25f, 16, 16);
+		hitBox= new Rectangle();
+		hitBox.width = (int) spr.getSx();
+		hitBox.height= (int)  spr.getSy();
+		hitBox.x=loc.x;
+		hitBox.y=loc.y;
+		Keyboard.enableRepeatEvents(true);
 	}
 
 	@Override
 	public void update(){
-		hitBox.x = loc.x;
-		hitBox.y = loc.y;
+		hitBox= new Rectangle();
 		hitBox.width = (int) spr.getSx();
 		hitBox.height= (int)  spr.getSy();
+		hitBox.x=loc.x;
+		hitBox.y=loc.y;
 		for(Tile t : MapManager.currentMap.mapData){
 			if (hitBox.intersects(t.hitBox)){
 				move= false;
+
 			}
 			if (!hitBox.intersects(t.hitBox)){
 				move= true;
@@ -112,6 +121,13 @@ public class Player extends GameObject{
 	public void getInput() {
 		// TODO Auto-generated method stub
 		while (Keyboard.next()) {
+
+			if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
+				//moveLeft = true;
+				System.exit(0);
+			}
+			
+			
 			if(Keyboard.isKeyDown(Keyboard.KEY_A)){
 				//moveLeft = true;
 				Left=true;
