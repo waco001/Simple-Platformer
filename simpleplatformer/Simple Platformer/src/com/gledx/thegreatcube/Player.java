@@ -15,6 +15,21 @@ import org.lwjgl.util.Rectangle;
 
 public class Player {
 	public double x, y, xspeed, yspeed;
+	public double acc=0.23;
+	public double deacc=0.18;
+	public double maxvspeed=6.5;
+	public double maxhspeed=5;
+	public int jumps=2;
+	public double _maxvspeed=5.5;
+	public double _maxhspeed=5;
+	public int dj=2;
+	public double _acc=0.23;
+	public double _deacc=0.34;
+	public boolean Left=false;
+	public boolean Right=false;
+	public boolean Up=false;
+	public boolean Down=false;
+	public double h;
 	public boolean Object_Right = false;
 	public boolean Object_Left = false;
 	public boolean Object_Down = false;
