@@ -35,6 +35,7 @@ public class Main {
 			{
 				MapManager.render();
 				player.render();
+				Camera.render();
 			}
 			{
 				player.update();
