@@ -4,7 +4,7 @@ import org.lwjgl.util.Rectangle;
 
 public class MapManager {
 	public static final int MAP_X = 40; //In tiles
-	public static final int MAP_Y = 30;
+	public static final int MAP_Y = 34;
 	public static final int MAP_TILE_SIZE = 16;
 	Rectangle viewport;
 	public static final int[][] map = new int[MAP_X][MAP_Y];

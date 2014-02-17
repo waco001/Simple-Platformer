@@ -13,6 +13,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+
 import com.gledx.thegreatcube.gameobjects.entities.Player;
 
 
@@ -50,9 +51,10 @@ public class Main {
 		System.setProperty("org.lwjgl.librarypath",System.getProperty("user.dir") + "/lib/");
 		mapManager  = new MapManager();
 		WINDOW_WIDTH = 40;
-		WINDOW_HEIGHT = 30;
+		WINDOW_HEIGHT = 34;
 		MapManager.loadMap();
 		Keyboard.enableRepeatEvents(true);
+
 	}
 	public static void setCamera(){
 		//Clear Screen

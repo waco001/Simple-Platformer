@@ -18,6 +18,7 @@ public class Player extends GameObject{
 	}
 	public void update(){
 		{ //NEEDED
+			//Camera.translate_y=loc.y;
 			loc.x += xspeed;
 			loc.y -= yspeed;
 
@@ -27,14 +28,16 @@ public class Player extends GameObject{
 			spr.setY(loc.y);
 
 			if(left == true){
+				if(right==false){
 				loc.x -= 1;
-				Camera.translate_x += 1;
+				if(loc.x > 0 && loc.x <38){Camera.translate_x += 1;}}
 			}
 			if(right == true){
+				if (left==false){
 				loc.x += 1;
-				Camera.translate_x -= 1;
+				if(loc.x > 0 && loc.x <38){Camera.translate_x -= 1;}}
+				
 			}
-
 
 
 			if(loc.y <= 0){
@@ -44,16 +47,20 @@ public class Player extends GameObject{
 			if(loc.x <= 0){
 				loc.x = 1;
 			}
-			if(loc.x >= 40)
-				loc.x = 39;
+			if(loc.x >= 39)
+				loc.x = 38;
 			if(loc.y >= 30)
 				loc.y = 29;
 			if(loc.y <= 1)
 				yspeed = 0;
-			System.out.println(loc.x + " " + loc.y);
+			//System.out.println(loc.x + " " + loc.y);
+			
 		}
 		while(Keyboard.next()){
-
+if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
+		{
+	System.out.println("Closing Game because swag");
+	System.exit(0);}
 			if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && MapManager.isBlockType(loc.x, loc.y - 1, 1)){
 				yspeed -= 2;
 			}
@@ -74,6 +81,9 @@ public class Player extends GameObject{
 			}
 			else{
 				right = false;
+			}
+			if(Keyboard.isKeyDown(Keyboard.KEY_C)){
+				Camera.translate_x=1;
 			}
 		}
 	}
